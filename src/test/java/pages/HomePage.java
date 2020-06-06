@@ -14,7 +14,6 @@ public class HomePage {
 
 
     public HomePage(WebDriver chromeDriver) {
-
         this.chromeDriver = chromeDriver;
         loadProductsList();
     }
@@ -25,6 +24,14 @@ public class HomePage {
         productsListAtHomepage.get(index).findElement(By.cssSelector(".product-description a")).click();
 
         return new ProductPage(chromeDriver);
+    }
+
+    // click que leva a página de login
+    public LoginPage clickSignInButton() {
+
+        chromeDriver.findElement(By.className("user-info")).click();
+
+        return new LoginPage(chromeDriver);
     }
 
 
@@ -56,8 +63,11 @@ public class HomePage {
 
 
     private void loadProductsList() {
-
         productsListAtHomepage = chromeDriver.findElements(By.className("product-description"));
+    }
+
+    public String getLoginNameAtHeader() {
+        return chromeDriver.findElement(By.className("account")).findElement(By.className("hidden-sm-down")).getText();
     }
 
 }

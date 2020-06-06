@@ -56,4 +56,19 @@ public class HomepageTests extends BaseTests {
 
     }
 
+
+    @Test
+    public void validateNameAtHeader() {
+
+        String email = "lucas@teste.com";
+        String passwd = "123456";
+
+        homepage.clickSignInButton().fillLoginForm(email, passwd);
+
+        String homepageName = homepage.getLoginNameAtHeader();
+
+        assertThat(homepageName, is(equalTo("Lucas Santos")));
+
+    }
+
 }
