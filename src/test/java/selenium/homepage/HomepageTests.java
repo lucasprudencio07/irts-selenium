@@ -1,8 +1,8 @@
-package homepage;
+package selenium.homepage;
 
-import base.BaseTests;
+import selenium.base.BaseTests;
 import org.junit.jupiter.api.Test;
-import pages.ProductPage;
+import selenium.pages.ProductPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -21,7 +21,7 @@ public class HomepageTests extends BaseTests {
         loadInitialPage();
 
         assertThat(homepage.countProducts(), is(equalTo(8)));
-//        assertEquals( 8, homepage.countProducts());
+//        assertEquals( 8, selenium.homepage.countProducts());
     }
 
 
@@ -51,8 +51,8 @@ public class HomepageTests extends BaseTests {
 
 
         // compact and more optimized version (que não funciona por causa do toUpperCase() !!!!)
-//        assertThat(homepage.getTShirtNameHome(index).toUpperCase(), is(equalTo(homepage.clickProduct(index).getTShirtNameProductPage().toUpperCase())));
-//        assertThat(homepage.getTShirtPriceHome(index), is(equalTo(homepage.clickProduct(index).getTShirtPriceProductPage())));
+//        assertThat(selenium.homepage.getTShirtNameHome(index).toUpperCase(), is(equalTo(selenium.homepage.clickProduct(index).getTShirtNameProductPage().toUpperCase())));
+//        assertThat(selenium.homepage.getTShirtPriceHome(index), is(equalTo(selenium.homepage.clickProduct(index).getTShirtPriceProductPage())));
 
     }
 
@@ -68,6 +68,8 @@ public class HomepageTests extends BaseTests {
         String homepageName = homepage.getLoginNameAtHeader();
 
         assertThat(homepageName, is(equalTo("Lucas Santos")));
+
+        String ola_mundo = "hi mina san, ogenki de";
 
     }
 

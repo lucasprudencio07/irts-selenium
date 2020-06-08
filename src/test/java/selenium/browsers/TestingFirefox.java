@@ -1,4 +1,4 @@
-package browsers;
+package selenium.browsers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
