@@ -11,19 +11,15 @@ import static org.hamcrest.Matchers.is;
 
 public class HomepageTests extends BaseTests {
 
-
-
     private final String productSize = "M";
     private final String productColor = "Black";
     private final String productQuantity = "2";
     private final Integer productIndex = 0;
 
-
     /*
     um disclaimer é que o "assertThat" recebe primeiro o valor atual e depois o esperado,
     já o "assertEquals" do Junit recebe primeiro o valor esperado e depois o atual.
     */
-
     @Test
     public void testCountProducts() {
 
@@ -84,12 +80,6 @@ public class HomepageTests extends BaseTests {
     @Test
     public void addProductOnShoppingCart() {
 
-        validateLoginAtHeader();
-
-        if (homepage.getTextAtHeader().equals("Lucas Santos")) {
-           validateLoginAtHeader();
-        }
-
         ProductPage tShirtPage = homepage.clickProduct(productIndex);
 
         tShirtPage.selectSize(productSize);
@@ -104,6 +94,5 @@ public class HomepageTests extends BaseTests {
         assertThat(modalPage.getSubtotalValueModel(), is(equalTo(38.24)));
         assertThat(modalPage.getMessageProductAddedModel(), is(equalTo("Product successfully added to your shopping cart")));
     }
-
 
 }

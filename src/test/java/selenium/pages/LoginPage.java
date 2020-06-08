@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
 
-    private WebDriver chromeDriver;
+    private final WebDriver chromeDriver;
 
 
     public LoginPage(WebDriver chromeDriver) {
