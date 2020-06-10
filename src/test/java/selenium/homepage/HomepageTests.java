@@ -1,20 +1,28 @@
 package selenium.homepage;
 
-import selenium.base.BaseTests;
 import org.junit.jupiter.api.Test;
+import pages.ShoppingCartPage;
+import selenium.base.BaseTests;
 import selenium.pages.ModalPage;
 import selenium.pages.ProductPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class HomepageTests extends BaseTests {
 
     private final String productSize = "M";
     private final String productColor = "Black";
     private final String productQuantity = "2";
+    private final String productQuantityAllTests = "4";
     private final Integer productIndex = 0;
+    private final Double productPriceOne = 19.12;
+    private final Double productPriceTotal = 38.24;
+    private final Double productPriceAbsoluteMaximum = 76.48;
+
+    private ModalPage modalPage;
+    private ProductPage productPage;
+    private ShoppingCartPage shoppingCartPage;
 
     /*
     um disclaimer é que o "assertThat" recebe primeiro o valor atual e depois o esperado,
@@ -44,7 +52,7 @@ public class HomepageTests extends BaseTests {
         String productName_home = homepage.getTShirtNameHome(productIndex).toLowerCase();
         String productPrice_home = homepage.getTShirtPriceHome(productIndex);
 
-        ProductPage productPage = homepage.clickProduct(productIndex);
+        productPage = homepage.clickProduct(productIndex);
 
         String productName_tshirt = productPage.getTShirtNameProductPage().toLowerCase();
         String productPrice_tshirt = productPage.getTShirtPriceProductPage();
@@ -82,17 +90,34 @@ public class HomepageTests extends BaseTests {
 
         ProductPage tShirtPage = homepage.clickProduct(productIndex);
 
-        tShirtPage.selectSize(productSize);
-        tShirtPage.selectColor(productColor);
-        tShirtPage.selectQuantity(productQuantity);
+        tShirtPage.chooseSize(productSize);
+        tShirtPage.chooseColor(productColor);
+        tShirtPage.chooseQuantity(productQuantity);
 
-        ModalPage modalPage = tShirtPage.addToShoppingCart();
+        modalPage = tShirtPage.addToShoppingCart();
 
         assertThat(modalPage.getSelectedSizeModel(), is(equalTo(productSize)));
         assertThat(modalPage.getSelectedColorModel(), is(equalTo(productColor)));
-        assertThat(modalPage.getSelectedQuantityModel(), is(equalTo(productQuantity)));
-        assertThat(modalPage.getSubtotalValueModel(), is(equalTo(38.24)));
+        assertThat(modalPage.getSelectedQuantityModel(), either(is(productQuantity)).or(is(productQuantityAllTests)));
+        assertThat(modalPage.getSubtotalValueModel(), either(is(productPriceOne)).or(is(productPriceTotal)).or(is(productPriceAbsoluteMaximum)));
         assertThat(modalPage.getMessageProductAddedModel(), is(equalTo("Product successfully added to your shopping cart")));
+    }
+
+
+    @Test
+    public void goToShoppingCart() {
+
+        addProductOnShoppingCart();
+
+        shoppingCartPage = modalPage.clickProceedToCheckout();
+
+        assertThat(shoppingCartPage.getProductNameCart(), is(equalTo("Hummingbird printed t-shirt")));
+        assertThat(shoppingCartPage.getProductPriceCart(), is(equalTo(productPriceOne)));
+        assertThat(shoppingCartPage.getSubtotalPriceCart(), either(is(productPriceTotal)).or(is(productPriceAbsoluteMaximum)));
+        assertThat(shoppingCartPage.getSubtotalPriceFromCheckoutCart(), either(is(productPriceTotal)).or(is(productPriceAbsoluteMaximum)));
+        assertThat(shoppingCartPage.getProductSizeCart(), is(equalTo(productSize)));
+        assertThat(shoppingCartPage.getProductColorCart(), is(equalTo(productColor)));
+        assertThat(shoppingCartPage.getProductQuantityCart(), either(is(productQuantity)).or(is(productQuantityAllTests)));
     }
 
 }

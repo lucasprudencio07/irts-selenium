@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import pages.ShoppingCartPage;
 
 import java.time.Duration;
 import java.util.List;
@@ -55,6 +56,17 @@ public class ModalPage {
 //        return chromeDriver.findElement(By.cssSelector(".cart-content p:nth-child(2) span.value")).getText();
     }
 
+
+
+    public ShoppingCartPage clickProceedToCheckout() {
+
+        chromeDriver.findElement(By.cssSelector("div.cart-content-btn a.btn-primary")).click();
+//        chromeDriver.findElement(By.xpath("//div[@class='cart-content-btn']//a")).click();
+
+        return new ShoppingCartPage(chromeDriver);
+    }
+
+
     public void waitForThePopUpScreen() {
 
         FluentWait fluentWait = new FluentWait(chromeDriver).withTimeout(Duration.ofSeconds(5))
@@ -67,5 +79,6 @@ public class ModalPage {
     private String getPopUpXpath(Integer index) {
         return "//div[@class='modal-body']//div[@class='col-md-6']//span["+ index +"]//strong";
     }
+
 
 }

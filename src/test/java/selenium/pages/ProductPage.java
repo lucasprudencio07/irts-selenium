@@ -28,7 +28,7 @@ public class ProductPage {
     }
 
 
-    public void selectSize(String size) {
+    public void chooseSize(String size) {
 
 //        Select selectOption = new Select(chromeDriver.findElement(By.id("group_1")));
 
@@ -47,7 +47,7 @@ public class ProductPage {
     }
 
 
-    public void selectColor(String color) {
+    public void chooseColor(String color) {
 
         if (color.toLowerCase().equals("white")) {
             chromeDriver.findElement(By.xpath("//ul[@id='group_2']//input[@value='8']")).click();
@@ -59,7 +59,7 @@ public class ProductPage {
     }
 
 
-    public void selectQuantity(String quantity) {
+    public void chooseQuantity(String quantity) {
 
         // este método limpa o input de quantidade e adiciona a variável
         chromeDriver.findElement(By.id("quantity_wanted")).clear();
