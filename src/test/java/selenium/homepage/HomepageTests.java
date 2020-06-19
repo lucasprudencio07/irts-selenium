@@ -118,6 +118,7 @@ public class HomepageTests extends BaseTests {
         assertThat(shoppingCartPage.getProductSizeCart(), is(equalTo(productSize)));
         assertThat(shoppingCartPage.getProductColorCart(), is(equalTo(productColor)));
         assertThat(shoppingCartPage.getProductQuantityCart(), either(is(productQuantity)).or(is(productQuantityAllTests)));
+        assertThat(shoppingCartPage.getProductQuantityFromInputCart(), either(is(productQuantity)).or(is(productQuantityAllTests)));
     }
 
 }

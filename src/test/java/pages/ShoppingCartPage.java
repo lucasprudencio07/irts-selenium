@@ -1,5 +1,6 @@
 package pages;
 
+import Util.Functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,7 +20,7 @@ public class ShoppingCartPage {
 
 
     public Double getProductPriceCart() {
-        return Double.parseDouble(chromeDriver.findElement(By.cssSelector("span.price")).getText().replace("$", ""));
+        return Double.parseDouble(Functions.removeDollarSign(chromeDriver.findElement(By.cssSelector("span.price")).getText()));
     }
 
 
@@ -37,9 +38,13 @@ public class ShoppingCartPage {
         return chromeDriver.findElement(By.cssSelector("span.js-subtotal")).getText().split(" ")[0];
     }
 
+    public String getProductQuantityFromInputCart() {
+        return chromeDriver.findElement(By.cssSelector("div.bootstrap-touchspin input.js-cart-line-product-quantity")).getAttribute("value");
+    }
+
 
     public Double getSubtotalPriceCart() {
-        return Double.parseDouble(chromeDriver.findElement(By.xpath("//div//span[@class='product-price']")).getText().replace("$", ""));
+        return Double.parseDouble(Functions.removeDollarSign(chromeDriver.findElement(By.xpath("//div//span[@class='product-price']")).getText()));
     }
 
 
