@@ -70,4 +70,7 @@ public class HomePage {
         return chromeDriver.findElement(By.className("account")).findElement(By.className("hidden-sm-down")).getText();
     }
 
+    public String getTextAtHeaderValidation() {
+        return chromeDriver.findElement(By.cssSelector("div.user-info a span")).getText();
+    }
 }

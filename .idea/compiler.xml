@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Testing-Selenium" />
+        <module name="irts-selenium-master" />
         <module name="irts-selenium" />
+        <module name="Testing-Selenium" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

@@ -3,6 +3,7 @@ package pages;
 import Util.Functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import selenium.pages.CheckoutPage;
 
 public class ShoppingCartPage {
 
@@ -52,4 +53,11 @@ public class ShoppingCartPage {
         return Double.parseDouble(chromeDriver.findElement(By.xpath("//div[@id='cart-subtotal-products']//span[2]")).getText().replace("$", ""));
     }
 
+
+    public CheckoutPage clickProceedToCheckout(){
+
+        chromeDriver.findElement(By.cssSelector("a.btn-primary")).click();
+
+        return new CheckoutPage(chromeDriver);
+    }
 }
