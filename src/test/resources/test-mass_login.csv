@@ -1,0 +1,3 @@
+test_name,email,password,username,expected_result
+valid_login,lucas@teste.com,123456,Lucas Santos,positive
+invalid_login,lucas@teste.com,test123,Lucas Santos,negative

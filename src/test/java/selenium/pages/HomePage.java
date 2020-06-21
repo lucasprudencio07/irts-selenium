@@ -1,6 +1,7 @@
 package selenium.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -66,11 +67,30 @@ public class HomePage {
         productsListAtHomepage = chromeDriver.findElements(By.className("product-description"));
     }
 
+
     public String getLoginNameAtHeader() {
         return chromeDriver.findElement(By.className("account")).findElement(By.className("hidden-sm-down")).getText();
     }
 
+
     public String getTextAtHeaderValidation() {
         return chromeDriver.findElement(By.cssSelector("div.user-info a span")).getText();
     }
+
+
+    public void clickSingOutButton() {
+        chromeDriver.findElement(By.cssSelector("div.user-info a.logout")).click();
+    }
+
+
+    public Boolean getLoginNameAtHeaderBoolean(String username) {
+        try {
+            return chromeDriver.findElement(By.className("account")).findElement(By.className("hidden-sm-down")).getText().equals(username);
+        }
+        catch (NoSuchElementException ns) {
+            return Boolean.FALSE;
+        }
+
+    }
+
 }

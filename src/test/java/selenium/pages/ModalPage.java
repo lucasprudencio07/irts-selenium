@@ -1,15 +1,10 @@
 package selenium.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import pages.ShoppingCartPage;
 
-import java.time.Duration;
-import java.util.List;
+import static Util.Functions.waitForThePopUpScreen;
 
 public class ModalPage {
 
@@ -21,33 +16,31 @@ public class ModalPage {
 
 
     public String getMessageProductAddedModel() {
-
-        waitForThePopUpScreen();
-
+        callFluentWait();
         return chromeDriver.findElement(By.id("myModalLabel")).getText().replace("\uE876", "");
     }
 
 
     public String getSelectedSizeModel() {
-        waitForThePopUpScreen();
+        callFluentWait();
         return chromeDriver.findElement(By.xpath(getPopUpXpath(1))).getText();
     }
 
 
     public String getSelectedColorModel() {
-        waitForThePopUpScreen();
+        callFluentWait();
         return chromeDriver.findElement(By.xpath(getPopUpXpath(2))).getText();
     }
 
 
     public String getSelectedQuantityModel() {
-        waitForThePopUpScreen();
+        callFluentWait();
         return chromeDriver.findElement(By.xpath(getPopUpXpath(3))).getText();
     }
 
 
     public Double getSubtotalValueModel() {
-        waitForThePopUpScreen();
+        callFluentWait();
 
         // by xpath
         return Double.parseDouble(chromeDriver.findElement(By.xpath("//div[@class='cart-content']//p[2]//span[2]")).getText().replace("$", ""));
@@ -67,18 +60,13 @@ public class ModalPage {
     }
 
 
-    public void waitForThePopUpScreen() {
-
-        FluentWait fluentWait = new FluentWait(chromeDriver).withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofSeconds(1)).ignoring(NoSuchElementException.class);
-
-        fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("myModalLabel")));
-    }
-
-
     private String getPopUpXpath(Integer index) {
         return "//div[@class='modal-body']//div[@class='col-md-6']//span["+ index +"]//strong";
     }
 
+
+    private void callFluentWait() {
+        waitForThePopUpScreen(chromeDriver);
+    }
 
 }
