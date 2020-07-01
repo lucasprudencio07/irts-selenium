@@ -1,8 +1,8 @@
 package selenium.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import pages.ShoppingCartPage;
 
 import static Util.Functions.waitForThePopUpScreen;
 
@@ -20,6 +20,10 @@ public class ModalPage {
         return chromeDriver.findElement(By.id("myModalLabel")).getText().replace("\uE876", "");
     }
 
+    public String getSelectedProductNameModel() {
+        callFluentWait();
+        return chromeDriver.findElement(By.cssSelector("div.modal-body h6")).getText();
+    }
 
     public String getSelectedSizeModel() {
         callFluentWait();
@@ -29,13 +33,23 @@ public class ModalPage {
 
     public String getSelectedColorModel() {
         callFluentWait();
-        return chromeDriver.findElement(By.xpath(getPopUpXpath(2))).getText();
+
+        String color = chromeDriver.findElement(By.xpath(getPopUpXpath(2))).getText();
+
+        if (color.contains("Color"))
+            return color;
+
+        return "N/A";
     }
 
 
     public String getSelectedQuantityModel() {
         callFluentWait();
-        return chromeDriver.findElement(By.xpath(getPopUpXpath(3))).getText();
+        try {
+            return chromeDriver.findElement(By.xpath(getPopUpXpath(3))).getText();
+        } catch (NoSuchElementException ne) {
+            return chromeDriver.findElement(By.xpath(getPopUpXpath(2))).getText();
+        }
     }
 
 

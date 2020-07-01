@@ -27,8 +27,8 @@ public class BaseTests {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
 
-//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\lprudencio\\Downloads\\WebDriver\\chromedriver83.exe");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\lucas\\Documents\\Drivers\\chromedriver83.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\lprudencio\\Downloads\\WebDriver\\chromedriver83.exe");
+//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\lucas\\Documents\\Drivers\\chromedriver83.exe");
 
         chromeDriver = new ChromeDriver();
         chromeDriver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);

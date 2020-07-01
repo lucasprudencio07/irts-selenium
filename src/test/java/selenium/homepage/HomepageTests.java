@@ -1,7 +1,7 @@
 package selenium.homepage;
 
 import org.junit.jupiter.api.Test;
-import pages.ShoppingCartPage;
+import selenium.pages.ShoppingCartPage;
 import selenium.base.BaseTests;
 import selenium.pages.CheckoutPage;
 import selenium.pages.ConfirmedOrderPage;
@@ -98,13 +98,13 @@ public class HomepageTests extends BaseTests {
     @Test
     public void testAddProductOnShoppingCart() {
 
-        ProductPage tShirtPage = homepage.clickProduct(productIndex);
+        productPage = homepage.clickProduct(productIndex);
 
-        tShirtPage.chooseSize(productSize);
-        tShirtPage.chooseColor(productColor);
-        tShirtPage.chooseQuantity(productQuantity);
+        productPage.chooseSize(productSize);
+        productPage.chooseColor(productColor);
+        productPage.chooseQuantity(productQuantity);
 
-        modalPage = tShirtPage.addToShoppingCart();
+        modalPage = productPage.addToShoppingCart();
 
         assertThat(modalPage.getSelectedSizeModel(), is(equalTo(productSize)));
         assertThat(modalPage.getSelectedColorModel(), is(equalTo(productColor)));

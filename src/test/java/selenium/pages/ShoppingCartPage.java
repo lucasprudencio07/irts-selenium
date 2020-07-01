@@ -1,4 +1,4 @@
-package pages;
+package selenium.pages;
 
 import Util.Functions;
 import org.openqa.selenium.By;
