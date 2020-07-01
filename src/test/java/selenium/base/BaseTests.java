@@ -13,7 +13,6 @@ import selenium.pages.HomePage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTests {

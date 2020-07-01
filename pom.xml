@@ -23,7 +23,7 @@
         <version.junit>5.6.2</version.junit>
         <version.selenium>3.141.59</version.selenium>
         <version.hamcrest>2.2</version.hamcrest>
-        <version.cucumber>5.5.0</version.cucumber>
+        <version.cucumber>6.1.2</version.cucumber>
 
     </properties>
 

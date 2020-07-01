@@ -36,8 +36,8 @@ public class HomePage {
     }
 
 
-    public Integer countProducts() {
-
+    public Integer getNumberOfProductsOnTheHomepage() {
+        loadProductsList();
         return productsListAtHomepage.size();
     }
 
@@ -91,6 +91,22 @@ public class HomePage {
             return Boolean.FALSE;
         }
 
+    }
+
+
+    public void loadHomePage() {
+        chromeDriver.get("https://marcelodebittencourt.com/demoprestashop");
+    }
+
+
+    public String getPageName() {
+        return chromeDriver.getTitle();
+    }
+
+
+    public Boolean isUserLoggedIn() {
+        String usernameAtHeader = chromeDriver.findElement(By.xpath("//div[@id='_desktop_user_info']//span[@class='hidden-sm-down']")).getText();
+        return usernameAtHeader.equals("Sign In");
     }
 
 }

@@ -1,7 +1,6 @@
 package selenium.pages;
 
 import Util.Functions;
-import io.cucumber.core.internal.gherkin.Func;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

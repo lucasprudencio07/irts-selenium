@@ -49,7 +49,7 @@ public class HomepageTests extends BaseTests {
 
         loadInitialPage();
 
-        assertThat(homepage.countProducts(), is(equalTo(8)));
+        assertThat(homepage.getNumberOfProductsOnTheHomepage(), is(equalTo(8)));
 //        assertEquals( 8, selenium.homepage.countProducts());
     }
 
